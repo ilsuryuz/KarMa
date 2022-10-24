@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from wsgiref.util import request_uri
+from django.shortcuts import redirect, render
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 from .models import Post
 # Create your views here.
 
@@ -35,3 +38,17 @@ class PostUpdate(UpdateView):
 class PostDelete(DeleteView):
     model = Post
     success_url = '/posts/'
+
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('index')
+        else:
+            error_message = 'Invalid sign up - try again'
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message }
+    return render(request, 'registration/signup.html', context)
