@@ -21,8 +21,12 @@ def posts_detail(request, post_id):
 
 class PostCreate(CreateView):
   model = Post
-  fields = '__all__'
-  success_url = '/posts/'
+  fields = ['year', 'mark', 'model']
+  
+  def form_valid(self, form):
+      form.instance.user = self.request.user
+      
+      return super().form_valid(form)
   
 class PostUpdate(UpdateView):
     model = Post
