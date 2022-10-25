@@ -1,10 +1,12 @@
+from audioop import reverse
 from wsgiref.util import request_uri
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .models import Post
+from .models import Post, Profile
+from .forms import ProfileForm
 # Create your views here.
 
 def home(request):
@@ -20,7 +22,6 @@ def posts_index(request):
 def posts_detail(request, post_id):
     post = Post.objects.get(id=post_id)
     return render(request, 'posts/detail.html', { 'post': post })
-
 
 class PostCreate(CreateView):
   model = Post
@@ -45,6 +46,9 @@ def signup(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            Profile.objects.create(
+                user=user
+            )
             login(request, user)
             return redirect('index')
         else:
@@ -52,3 +56,13 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message }
     return render(request, 'registration/signup.html', context)
+
+def profile(request):
+    profile = request.user.profile
+    profile_form = ProfileForm(instance=profile)
+    
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if profile_form.is_valid():
+            profile_form.save()
+    return render(request, 'profile/profile.html', { 'profile_form': profile_form, 'profile': profile})

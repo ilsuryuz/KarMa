@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {%block content%}
+
+<h1>Hello, {{ profile.user }}</h1>
+<div>
+    <img src="{{profile.avatar.url}}" alt="{{profile.avatar}}"/>
+    <p>{{profile.bio}}</p>
+</div>
+<div>
+    <div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %} {{ profile_form.as_p }}
+            <input type="submit" class="btn" value="Save Profile" />
+        </form>
+    </div>
+
+    <div class="card-action">
+        
+    </div>
+</div>
+
+{% endblock %}
