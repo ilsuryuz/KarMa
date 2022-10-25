@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,17 +6,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/98.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <title>KarMa</title>
 </head>
 
 <body>
 
     <header class="navbar-fixed">
-        <nav>
-            <div class="">
-                <ul class="">
-                    <li><a href="/about">About</a></li>
+        <nav class="purple darken-3 ">
+            <div class="nav-wrapper">
+                <ul>
+                    <li>
+                        <a href="/" class="left brand-logo">&nbsp;&nbsp;KarMa</a>
+                    </li>
+                </ul>
+                <ul class="tabs tabs-transparent">
+                    <li class="tab"><a href="/about">About</a></li>
                     <li><a href="/">Home</a></li>
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
@@ -27,18 +34,35 @@
                 </ul>
             </div>
         </nav>
+        <nav class="nav-extended">
+            <div class="nav-wrapper">
+                <a href="/" class="center brand-logo">&nbsp;&nbsp;KarMa</a>
+            </div>
+            <div class="nav-content">
+              <ul class="tabs tabs-transparent">
+                <li class="tab"><a href="/about">About</a></li>
+                <li class="tab"><a href="/posts">Home</a></li>
+                {% if user.is_authenticated %}
+                <li class="tab"><a href="{% url 'logout' %}">Log Out</a></li>
+                {% else %}
+                <li class="tab"><a href="{% url 'signup' %}">Sign Up</a></li>
+                <li class="tab"><a href="{% url 'login' %}">Log In</a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </nav>
     </header>
     <div>
         <button><li><a href="{% url 'posts_create' %}">Add Post</a></li></button>
     </div>
-    <main class="">{% block content %} {% endblock %}</main>
+    <main class="container">{% block content %} {% endblock %}
+    </main>
 
-    <footer class="">
-        <div class="">
-            All Rights Reserved, &copy; 2022 KarMa &nbsp;
-        </div>
+    <footer class="page-footer">
+            <div class="center">
+                All Rights Reserved, &copy; 2022 KarMa &nbsp;
+            </div>
     </footer>
-
 </body>
 
 </html>
