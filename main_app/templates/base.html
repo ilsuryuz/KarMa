@@ -12,36 +12,16 @@
 </head>
 
 <body>
-
     <header class="navbar-fixed">
-        <nav class="purple darken-3 ">
-            <div class="nav-wrapper">
-                <ul>
-                    <li>
-                        <a href="/" class="left brand-logo">&nbsp;&nbsp;KarMa</a>
-                    </li>
-                </ul>
-                <ul class="tabs tabs-transparent">
-                    <li class="tab"><a href="/about">About</a></li>
-                    <li><a href="/">Home</a></li>
-                    {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
-
-                    {% else %}
-                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                    <li><a href="{% url 'login' %}">Log In</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
         <nav class="nav-extended">
             <div class="nav-wrapper">
-                <a href="/" class="center brand-logo">&nbsp;&nbsp;KarMa</a>
+                <a href="/" class="center brand-logo">KarMa</a>
             </div>
             <div class="nav-content">
               <ul class="tabs tabs-transparent">
+                <li class="tab"><a href="/">Home</a></li>
+                <li class="tab"><a href="{% url 'profile' %}">Profile</a></li>
                 <li class="tab"><a href="/about">About</a></li>
-                <li class="tab"><a href="/posts">Home</a></li>
                 {% if user.is_authenticated %}
                 <li class="tab"><a href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
@@ -55,7 +35,8 @@
     <div>
         <button><li><a href="{% url 'posts_create' %}">Add Post</a></li></button>
     </div>
-    <main class="container">{% block content %} {% endblock %}
+    <main class="container">
+        <div class="col-s9">{% block content %} {% endblock %}</div>
     </main>
 
     <footer class="page-footer">

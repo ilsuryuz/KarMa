@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+import environ
+
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-yvvbgib&=()vazql@@r%5s@9x13%%*&$o389+rn%lq7v_ld@yn'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -79,9 +84,9 @@ WSGI_APPLICATION = 'KarMa.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'KarMa',
-        'USER': 'yuzli',
-        'PASSWORD': '1025',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
         'HOST': 'localhost',
         'PORT': '5432'
     }
@@ -135,4 +140,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'main_app/static/images')
 
-AWS_STORAGE_BUCKET_NAME = 'karmaapp'
+
+S3_BASE_URL= env('S3_BASE_URL')
+DEFAULT_FILE_STORAGE= env('DEFAULT_FILE_STORAGE')
+AWS_STORAGE_BUCKET_NAME=env('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_FILE_OVERWRITE=env('AWS_S3_FILE_OVERWRITE')
+AWS_DEFAULT_ACL=env('AWS_DEFAULT_ACL')
+AWS_S3_BASE_URL=env('AWS_S3_BASE_URL')
+AWS_S3_SIGNATURE_VERSION =env('AWS_S3_SIGNATURE_VERSION')
+AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')

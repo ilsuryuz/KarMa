@@ -17,3 +17,8 @@ footer {
     padding-top: 0;
     text-align: right;
 }
+.tabs-transparent {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    }
