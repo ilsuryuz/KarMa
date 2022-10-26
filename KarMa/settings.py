@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from threading import local
-import boto3
 import environ
 
 # Initialise environment variables
