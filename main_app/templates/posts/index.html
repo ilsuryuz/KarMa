@@ -6,14 +6,15 @@
     <div class="col s12 m7">
       <div class="card">
         <div class="card-image">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png">
-          <span class="card-title">{{post.year}} {{post.mark}} {{post.model}} by @{{post.user}}</span>
+          <img src="{{post.photo.url}}" alt="{{post.photo}}">
+          <span class="card-title"
+          style="color:#ff5400; font-weight:bold;">{{post.year}} {{post.mark}} {{post.model}} by @{{post.user}}</span>
         </div>
         <div class="card-content">
           <p>{{post.content}}</p>
         </div>
         <div class="card-action">
-          <a href="{% url 'detail' post.id %}">View Post</a>
+          <a style="font-weight:bold;"href="{% url 'detail' post.id %}">View Post</a>
         </div>
       </div>
     </div>

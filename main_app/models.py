@@ -12,7 +12,7 @@ class Post(models.Model):
     content = models.CharField(max_length=200)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    
+    photo= models.ImageField(null=True, blank=True, default="images/default-post.png")
     def __str__(self):
         return self.mark
     

@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="https://karmaapp.s3.us-east-2.amazonaws.com/images/favicon.png"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <title>KarMa</title>
@@ -13,14 +14,18 @@
 
 <body>
     <header>
-        <div class="mavnbar-fixed teal darken-4">
+        <div class="mavnbar-fixed blue-grey darken-3">
          <nav class="nav-extended">
-            <div class="nav-wrapper teal darken-4">
-                <a href="/" class="center brand-logo">KarMa</a>
+            <div class="nav-wrapper blue-grey darken-3">
+                <a href="/" class="center brand-logo"><img src="https://karmaapp.s3.us-east-2.amazonaws.com/images/logo.png" alt="" style="max-height: 80px; padding:15px 0;"></a>
             </div>
             <div class="nav-content">
-              <ul class="tabs tabs-transparent teal darken-3">
+              <ul class="tabs tabs-transparent blue-grey darken-2">
+                {% if user.is_authenticated %}
+                <li class="tab"><a href="{% url 'index' %}">Parking Lot</a></li>
+                {% else %}
                 <li class="tab"><a href="/">Home</a></li>
+                {% endif %}
                 {% if user.is_authenticated %}
                 <li class="tab"><a href="{% url 'profile' %}">Profile</a></li>
                 {% endif %}
@@ -39,19 +44,28 @@
     
     <main class="container">
         <div class="row">
-            <div class="col s3 push-s teal darken-3">
+            <div class="col s3 push-s blue-grey darken-2">
                 {% if user.is_authenticated %}
-                <div>
-                    <h4>{{user}}'s space</h4>
+                <div class="center">
+                    <h4 style="color:white;">Welcome {{user}}!</h4>
                     <img class="circle responsive-img" src="{{user.profile.avatar.url}}" alt="{{profile.avatar}}" style="height:100px;"/></div>
-                <p>{{user.profile.bio}}</p>
+                <p style="color:white;">{{user.profile.bio}}</p>
+                <br/>
+                <div>
+                    <a class="btn blue-grey darken-3" href="{% url 'posts_create' %}">Add Post+</a>
+                </div>
+                {% else %}
+                <div class="center">
+                    <h4 style="color:white;">Welcome to KarMa!</h4>
+                    <h5>Please Sign In/Up</h5>
+                </div>
                 {% endif %}
             </div>
             <div class="col s9 push-s3 scrollable">{% block content %} {% endblock %}</div>
         </div>
     </main>
 
-    <footer class="page-footer teal darken-4">
+    <footer class="page-footer blue-grey darken-3">
             <div class="center">
                 All Rights Reserved, &copy; 2022 KarMa &nbsp;
             </div>

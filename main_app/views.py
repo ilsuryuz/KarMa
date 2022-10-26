@@ -25,7 +25,7 @@ def posts_detail(request, post_id):
 
 class PostCreate(CreateView):
   model = Post
-  fields = ['year', 'mark', 'model']
+  fields = ['year', 'mark', 'model', 'content', 'photo']
   
   def form_valid(self, form):
       form.instance.user = self.request.user
@@ -34,7 +34,7 @@ class PostCreate(CreateView):
   
 class PostUpdate(UpdateView):
     model = Post
-    fields = ['year', 'model']
+    fields = ['year', 'mark', 'model', 'content', 'photo']
 
 class PostDelete(DeleteView):
     model = Post

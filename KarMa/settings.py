@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+import boto3
 import environ
 
 # Initialise environment variables
@@ -141,11 +142,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'main_app/static/images')
 
 
-S3_BASE_URL= env('S3_BASE_URL')
+
 DEFAULT_FILE_STORAGE= env('DEFAULT_FILE_STORAGE')
 AWS_STORAGE_BUCKET_NAME=env('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_FILE_OVERWRITE=env('AWS_S3_FILE_OVERWRITE')
-AWS_DEFAULT_ACL=env('AWS_DEFAULT_ACL')
-AWS_S3_BASE_URL=env('AWS_S3_BASE_URL')
+S3_BASE_URL=env('AWS_S3_BASE_URL')
 AWS_S3_SIGNATURE_VERSION =env('AWS_S3_SIGNATURE_VERSION')
 AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
