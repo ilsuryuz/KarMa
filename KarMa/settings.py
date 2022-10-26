@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from threading import local
-from os import environ
+import environ
 
 # Initialise environment variables
 env = environ.Env()
