@@ -1,4 +1,4 @@
-# Neopets!
+# KarMa!
 
 ## **Welcome to KarMa** ##
 
