@@ -27,8 +27,8 @@ This is a social media app where people who like cars can post own cars as well 
 * Users have the ability to edit their user profile with a profile picture and bio
 
 ## <a name="screenshots"></a>Screenshots
-![](main_app/)
-![](main_app/)
+![](readme/main-page.png)
+![](readme/profile-page.png)
 
 ## <a name="deployment"></a>Deployed App
 * [Deployed link](https://karmasite.herokuapp.com/)
