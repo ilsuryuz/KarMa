@@ -2,17 +2,24 @@
 
 <h1>Post Details</h1>
 
-<div>
-    <div>
-        <span class="card-title">{{ post.mark }}</span>
-        <p>Year: {{ post.year }}</p>
-        <p>Model: {{ post.model }}</p>
+<div class="row">
+    <div class="col s12 m7">
+      <div class="card">
+        <div class="card-image">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png">
+          <span class="card-title">{{post.year}} {{post.mark}} {{post.model}} by @{{post.user}}</span>
+        </div>
+        <div class="card-content">
+          <p>{{post.content}}</p>
+        </div>
+        <div class="card-action">
+            {% if post.user == request.user %}
+                <a href="{% url 'posts_update' post.id %}">Edit</a>
+                <a href="{% url 'posts_delete' post.id %}">Delete</a>
+            {% endif %}
+        </div>
+      </div>
     </div>
-
-    <div class="card-action">
-        <a href="{% url 'posts_update' post.id %}">Edit</a>
-        <a href="{% url 'posts_delete' post.id %}">Delete</a>
-    </div>
-</div>
+  </div>
 
 {% endblock %}

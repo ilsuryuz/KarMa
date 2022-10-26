@@ -1,11 +1,12 @@
 {% extends 'base.html' %} {%block content%}
 
 <h1>Hello, {{ profile.user }}</h1>
-<div>
-    <img src="{{profile.avatar.url}}" alt="{{profile.avatar}}"/>
+<div class="centerApp">
+    <img class="circle responsive-img" src="{{profile.avatar.url}}" alt="{{profile.avatar}}" style="height:100px;"/>
     <p>{{profile.bio}}</p>
 </div>
 <div>
+    <h4>Edit Profile</h4>
     <div>
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %} {{ profile_form.as_p }}

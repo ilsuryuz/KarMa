@@ -12,15 +12,18 @@
 </head>
 
 <body>
-    <header class="navbar-fixed">
-        <nav class="nav-extended">
-            <div class="nav-wrapper">
+    <header>
+        <div class="mavnbar-fixed teal darken-4">
+         <nav class="nav-extended">
+            <div class="nav-wrapper teal darken-4">
                 <a href="/" class="center brand-logo">KarMa</a>
             </div>
             <div class="nav-content">
-              <ul class="tabs tabs-transparent">
+              <ul class="tabs tabs-transparent teal darken-3">
                 <li class="tab"><a href="/">Home</a></li>
+                {% if user.is_authenticated %}
                 <li class="tab"><a href="{% url 'profile' %}">Profile</a></li>
+                {% endif %}
                 <li class="tab"><a href="/about">About</a></li>
                 {% if user.is_authenticated %}
                 <li class="tab"><a href="{% url 'logout' %}">Log Out</a></li>
@@ -31,15 +34,24 @@
               </ul>
             </div>
           </nav>
+        </div>
     </header>
-    <div>
-        <button><li><a href="{% url 'posts_create' %}">Add Post</a></li></button>
-    </div>
+    
     <main class="container">
-        <div class="col-s9">{% block content %} {% endblock %}</div>
+        <div class="row">
+            <div class="col s3 push-s teal darken-3">
+                {% if user.is_authenticated %}
+                <div>
+                    <h4>{{user}}'s space</h4>
+                    <img class="circle responsive-img" src="{{user.profile.avatar.url}}" alt="{{profile.avatar}}" style="height:100px;"/></div>
+                <p>{{user.profile.bio}}</p>
+                {% endif %}
+            </div>
+            <div class="col s9 push-s3 scrollable">{% block content %} {% endblock %}</div>
+        </div>
     </main>
 
-    <footer class="page-footer">
+    <footer class="page-footer teal darken-4">
             <div class="center">
                 All Rights Reserved, &copy; 2022 KarMa &nbsp;
             </div>

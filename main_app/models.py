@@ -21,7 +21,7 @@ class Post(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
-    avatar = models.ImageField(null=True, blank=True)
+    avatar = models.ImageField(null=True, blank=True, default="images/default-profile-pic.png")
     bio = models.CharField(max_length=100, null=True, default="Car Enthusiast")
     
     def __str__(self):

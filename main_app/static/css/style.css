@@ -8,6 +8,9 @@ body{
     min-height: 100vh;
     flex-direction: column;
 }
+*::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+  }
 
 main {
     flex: 1 0 auto;
@@ -22,3 +25,20 @@ footer {
     align-items: center;
     justify-content: center;
     }
+.container {
+    margin: 0;
+}
+.scrollable {
+    overflow: auto;
+    justify-items: auto;
+    max-height: 90vh;
+}
+.col.s3 {
+    min-height: 90vh;
+}
+.row {
+    margin: 0;
+}
+.centerApp {
+    align-items: center;
+}
