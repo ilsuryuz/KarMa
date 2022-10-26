@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+from threading import local
 import boto3
 import environ
 
@@ -149,3 +150,6 @@ AWS_S3_FILE_OVERWRITE=env('AWS_S3_FILE_OVERWRITE')
 S3_BASE_URL=env('AWS_S3_BASE_URL')
 AWS_S3_SIGNATURE_VERSION =env('AWS_S3_SIGNATURE_VERSION')
 AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
+
+import django_heroku
+django_heroku.settings(locals())
