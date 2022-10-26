@@ -1,1 +1,1 @@
-web: gunicorn --chdir KarMa.wsgi
+web: gunicorn KarMa.wsgi
