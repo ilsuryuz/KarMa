@@ -150,5 +150,5 @@ S3_BASE_URL=env('AWS_S3_BASE_URL')
 AWS_S3_SIGNATURE_VERSION =env('AWS_S3_SIGNATURE_VERSION')
 AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
 
-import django_heroku
-django_heroku.settings(locals())
+# import django_heroku
+# django_heroku.settings(locals())
