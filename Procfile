@@ -1,1 +1,1 @@
-web: gunicorn KarMa.wsgi
+web: gunicorn KarMa.wsgi --log-file -
