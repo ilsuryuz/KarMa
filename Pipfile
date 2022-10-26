@@ -8,6 +8,8 @@ django-heroku = "*"
 gunicorn = "*"
 django-environ = "*"
 django-storages = "*"
+pillow = "*"
+boto3 = "*"
 
 [dev-packages]
 
